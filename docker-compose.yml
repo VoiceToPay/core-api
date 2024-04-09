@@ -1,0 +1,29 @@
+version: '3.7'
+
+services:
+  service:
+    image: speak-to-pay-api-app
+    container_name: speak-to-pay-api-app
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+      network: host
+    # volumes:
+    #   - ./:/src
+    #ports:
+    #- "8881:8000"
+    network_mode: host
+  #networks:
+  #   - base-network
+    command: 'pm2-runtime server.js'
+
+# volumes:
+#   app_pg_data:
+#     driver: "local"
+
+networks:
+  base-network:
+    external: true
+
